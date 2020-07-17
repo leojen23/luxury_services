@@ -30,6 +30,7 @@ class CandidateController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        
         $candidate = new Candidate();
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
@@ -64,6 +65,7 @@ class CandidateController extends AbstractController
     public function edit(Request $request, Candidate $candidate): Response
     {
         $form = $this->createForm(CandidateType::class, $candidate);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

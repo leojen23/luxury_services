@@ -20,6 +20,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppRegisterAuthenticator $authenticator): Response
     {
         $user = new Candidate();
+       
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -31,22 +32,26 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+            
+            
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
                 $authenticator,
                 'main' // firewall name in security.yaml
+                
             );
+     
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            
         ]);
     }
 }
