@@ -203,7 +203,7 @@ class Candidate implements UserInterface
         }else
         {
             $roles[] = 'ROLE_USER';
-            dd($roles);
+            // dd($roles);
         }
         // guarantee every user at least has ROLE_USER
         ;

@@ -73,10 +73,11 @@ class CandidateController extends AbstractController
 
             return $this->redirectToRoute('candidate_index');
         }
-
+       ;
         return $this->render('candidate/edit.html.twig', [
             'candidate' => $candidate,
             'form' => $form->createView(),
+            
         ]);
     }
 

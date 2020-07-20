@@ -26,7 +26,6 @@ class CandidateType extends AbstractType
             ->add('password')
             ->add('gender', ChoiceType::class, [
                 'choices' => [
-                    'placeholder' => 'select a value',
                     'Male' => 'Male',
                     'Female' => 'Female',
                     'Transgender' => 'Transgender',
@@ -45,7 +44,16 @@ class CandidateType extends AbstractType
             ->add('birth_date')
             ->add('birth_place')
             ->add('is_available')
-            ->add('experience')
+            ->add('experience', ChoiceType::class, [
+                'choices' => [
+                    '0-6 months' => '0-6 months',
+                    '6 months - 1 year' => '6 months - 1 year',
+                    '1 - 2 years' => '1 - 2 years',
+                    '2+ years' => '2+ years',
+                    '5+ years' => '5+ years',
+                    '10+ years' => '10+ years',
+                ]
+            ])
             ->add('description')
             ->add('created_at')
             ->add('updated_at')
