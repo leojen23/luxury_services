@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Joboffer;
+use App\Entity\Sector;
 use App\Form\JobofferType;
 use App\Repository\JobofferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,15 +16,24 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class JobofferController extends AbstractController
 {
+
+
+
+
+
     /**
-     * @Route("/", name="joboffer_index", methods={"GET"})
+     * @Route("/", name="joboffer_view", methods={"GET"})
      */
-    public function index(JobofferRepository $jobofferRepository): Response
+    public function viewOffers(JobofferRepository $jobofferRepository): Response
     {
-        return $this->render('joboffer/index.html.twig', [
+     
+        // dd($jobofferRepository->findAll());
+        return $this->render('joboffer/view_offer.html.twig', [
             'joboffers' => $jobofferRepository->findAll(),
         ]);
     }
+
+    
 
     /**
      * @Route("/new", name="joboffer_new", methods={"GET","POST"})
@@ -39,7 +49,7 @@ class JobofferController extends AbstractController
             $entityManager->persist($joboffer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('joboffer_index');
+            return $this->redirectToRoute('joboffer_view');
         }
 
         return $this->render('joboffer/new.html.twig', [

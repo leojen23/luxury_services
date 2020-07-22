@@ -13,11 +13,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="white-text">Admin page</h2>
+                        <h2 class="white-text">Dashboard</h2>
                         <span class="white-text">Personnal & Professionnal informations</span>
                         <ol class="breadcrumb">
-                            <li><a href="#!">Home</a></li>
-                            <li class="active">Admin</li>
+                            {# <li><a href="{{path('admin_dashboard')}}">Dashboard</a></li> #}
+                            <li class="active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -32,13 +32,13 @@
             </a>
         </button>
     
-        <button><a target="_self" href="{{path('app_register')}}" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
+        <button><a target="_self" href="{{path('candidate_index')}}" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
             <span>Candidates</span>
         </a></button>
-    
+
 
   
-        <button><a target="_self" href="{{path('app_register')}}" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
+        <button><a target="_self" href="{{path('admin_joboffer_index')}}" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
             <span>Job offers</span>
         </a></button>
     </div>

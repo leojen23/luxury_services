@@ -4,6 +4,7 @@ namespace App\Security;
 
 use App\Entity\Candidate;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -19,6 +20,9 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+
+
+
 
 class AppRegisterAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
@@ -90,17 +94,19 @@ class AppRegisterAuthenticator extends AbstractFormLoginAuthenticator implements
         return $credentials['password'];
     }
 
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-        
+
         return new RedirectResponse($this->urlGenerator->generate('candidate_edit', ['id' => $token->getUser()->getId()]));
-       
+    }  
+        
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-    }
+    
 
     protected function getLoginUrl()
     {

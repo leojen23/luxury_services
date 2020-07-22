@@ -2,12 +2,51 @@
 
 {% block title %}New Joboffer{% endblock %}
 
+{% block stylesheets %}
+ <style>
+        select {
+            display: block!important;
+        }
+    </style>
+{% endblock %}
+
+
 {% block body %}
-<div class="container">
-    <h1>Create new Joboffer</h1>
+
+     <div class="base">
+
+    <!-- Page -->
+    <div class="page">
+
+        <!-- Page Header-->
+        <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="white-text">New Job Offer</h2>
+                        <span class="white-text">Personnal & Professionnal informations</span>
+                        <ol class="breadcrumb">
+                        <li><a href="{{path('home_page')}}">Home</a></li>
+                            <li><a href="{{path('admin_dashboard')}}">Dashgboard</a></li>
+                            <li class="active">New Job Offer</li>
+                        </ol>
+                    </div>
+                </div>
+            
+        </section>
 
     {{ include('joboffer/_form.html.twig') }}
 
-    <a href="{{ path('joboffer_index') }}">back to list</a>
+    <a href="{{ path('joboffer_new') }}">back to list</a>
 </div>
 {% endblock %}
+
+ {% block javascripts %}
+ <script type="text/javascript">
+
+    onAppReady(function() {
+        $('.preload').remove();
+    });
+</script>
+ 
+ {% endblock %}
