@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Joboffer;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +48,27 @@ class JobofferRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function getAllJoboffers()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT
+                joboffer,
+                sector,
+                client
+                
+             FROM
+                App\Entity\Joboffer joboffer
+             JOIN
+                joboffer.sector sector
+                JOIN
+                joboffer.client client
+            ');
+
+            // dd($query->getResult());
+        return $query->getResult();
+    }
 }

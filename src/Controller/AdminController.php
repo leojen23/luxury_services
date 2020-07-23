@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Candidate;
+use App\Entity\Joboffer;
 use App\Form\CandidateType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,6 +53,16 @@ class AdminController extends AbstractController
     {
         return $this->render('joboffer/index.html.twig', [
             'joboffers' => $jobofferRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="joboffer_show", methods={"GET"})
+     */
+    public function show(Joboffer $joboffer): Response
+    {
+        return $this->render('joboffer/show.html.twig', [
+            'joboffer' => $joboffer,
         ]);
     }
        

@@ -17,23 +17,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class JobofferController extends AbstractController
 {
 
-
-
-
-
     /**
      * @Route("/", name="joboffer_view", methods={"GET"})
      */
     public function viewOffers(JobofferRepository $jobofferRepository): Response
     {
-     
-        // dd($jobofferRepository->findAll());
-        return $this->render('joboffer/view_offer.html.twig', [
-            'joboffers' => $jobofferRepository->findAll(),
+        
+        return $this->render('joboffer/view_offers.html.twig', [
+            'joboffers' => $jobofferRepository->getAllJoboffers()
         ]);
     }
 
-    
+
+
+    /**
+     * @Route("/", name="joboffer_HomepageView", methods={"GET"})
+     */
+    public function viewOffersHomePage(JobofferRepository $jobofferRepository): Response
+    {
+        
+        return $this->render('home_page/index.html.twig', [
+            'joboffers' => $jobofferRepository->getAllJoboffers()
+        ]);
+    }
+
 
     /**
      * @Route("/new", name="joboffer_new", methods={"GET","POST"})
@@ -63,7 +70,7 @@ class JobofferController extends AbstractController
      */
     public function show(Joboffer $joboffer): Response
     {
-        return $this->render('joboffer/show.html.twig', [
+        return $this->render('joboffer/offerDetails.html.twig', [
             'joboffer' => $joboffer,
         ]);
     }

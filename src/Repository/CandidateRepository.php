@@ -64,4 +64,27 @@ class CandidateRepository extends ServiceEntityRepository implements PasswordUpg
         ;
     }
     */
+
+
+    public function getProgression($id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT
+                candidate,
+            COUNT(*) as
+
+            WHERE id = $id
+                
+                
+             FROM
+                App\Entity\Candidate candidate
+
+             WHERE * = NULL
+            ');
+
+            // dd($query->getResult());
+        return $query->getResult();
+    }
 }

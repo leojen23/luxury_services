@@ -4,29 +4,7 @@
 
 {% block body %}
 
-{% for joboffer in joboffers %}
-            <tr>
-                <td>{{ joboffer.id }}</td>
-                <td>{{ joboffer.reference }}</td>
-                <td>{{ joboffer.description }}</td>
-                <td>{{ joboffer.isActivated ? 'Yes' : 'No' }}</td>
-                <td>{{ joboffer.notes }}</td>
-                <td>{{ joboffer.jobTitle }}</td>
-                <td>{{ joboffer.jobType }}</td>
-                <td>{{ joboffer.location }}</td>
-                <td>{{ joboffer.closingDate ? joboffer.closingDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ joboffer.salary }}</td>
-                <td>{{ joboffer.createdAt ? joboffer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('joboffer_show', {'id': joboffer.id}) }}">show</a>
-                    <a href="{{ path('joboffer_edit', {'id': joboffer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
+
 
 <body id="top">
 
@@ -60,19 +38,18 @@
                     <ul class="portfolio-filter brand-filter text-center">
                         <li class="active waves-effect waves-light" data-group="all">All</li>
                         <li class=" waves-effect waves-light" data-group="commercial">Commercial</li>
-                        <li class=" waves-effect waves-light" data-group="retail">Retail sales</li>
+                        <li class=" waves-effect waves-light" data-group="Retail sales">Retail sales</li>
                         <li class=" waves-effect waves-light" data-group="creative">Creative</li>
-                        <li class=" waves-effect waves-light" data-group="technology">Technology</li>
-                        <li class=" waves-effect waves-light" data-group="marketing">Marketing & PR</li>
-                        <li class=" waves-effect waves-light" data-group="fashion">Fashion & luxury</li>
-                        <li class=" waves-effect waves-light" data-group="management">Management & HR</li>
+                        <li class=" waves-effect waves-light" data-group="Technology">Technology</li>
+                        <li class=" waves-effect waves-light" data-group="Marketing & PR">Marketing & PR</li>
+                        <li class=" waves-effect waves-light" data-group="Fashion & luxury">Fashion & luxury</li>
+                        <li class=" waves-effect waves-light" data-group="Management & HR">Management & HR</li>
                     </ul>
                     <div class="portfolio portfolio-with-title col-2 gutter mt-30">
 
                     {% for joboffer in joboffers %}
-                    
-                    
-                        <div class="portfolio-item" data-groups='["all", "{{ joboffer.sector.sector()}}"]'>
+                        <div class="portfolio-item" data-groups='["all", "{{joboffer.sector.sector}}"]'>
+                        {# {{joboffer.getSector().getSector())}} #}
                             <div class="portfolio-wrapper">
                                 <div class="card job-card">
                                     <div class="card-content">
@@ -94,7 +71,7 @@
                                         <p class="truncate-text">{{ joboffer.description }}</p>
                                     </div>
                                     <div class="card-action">
-                                        <a class="btn btn-md primary border waves-effect waves-dark" href="/jobs/show.html">Details</a>
+                                        <a class="btn btn-md primary border waves-effect waves-dark" href="{{path('joboffer_show', {'id' : joboffer.id})}}">Details</a>
                                         <a class="btn btn-md primary waves-effect waves-light" href="#!">Apply</a>
                                     </div>
                                 </div>

@@ -8,9 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=JobofferRepository::class)
- */
+ * @ORM\Entity
+*@ORM\Table(name="joboffer", indexes={@ORM\Index(name="FK_F33F8164DE95C867", columns={"sector_id"})})
+*/
+
 class Joboffer
+
 {
     /**
      * @ORM\Id()
@@ -76,11 +79,13 @@ class Joboffer
     private $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Sector::class, inversedBy="joboffers")
-     * @ORM\JoinColumn(nullable=true)
+     * @var Sector
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sector")
+     * @ORM\JoinColumn(name="sector_id", referencedColumnName="id")
      */
-    private $sector;
 
+    private $sector;
     /**
      * @ORM\OneToMany(targetEntity=Application::class, mappedBy="joboffer")
      */
